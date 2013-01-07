@@ -14,9 +14,13 @@ function! UpdateTags()
 	if (!empty(file))
 		let oldpath = getcwd()
 		let path = strpart(file, 0, match(file, "/tags$"))
-		exe "cd " . path
-		!ctags -f tags -R *
-		exe "cd " . oldpath
+		if (!empty(path))
+			exe "cd " . path
+			!ctags -f tags -R *
+			exe "cd " . oldpath
+		else
+			!ctags -f tags -R *
+		endif
 	endif
 endfunction
 au VimEnter * call UpdateTags()
