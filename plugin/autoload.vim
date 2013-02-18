@@ -23,4 +23,6 @@ function! UpdateTags()
 		endif
 	endif
 endfunction
-au VimEnter * call UpdateTags()
+"au VimEnter * call UpdateTags()
+
+command UpdateCtags :call UpdateTags()
